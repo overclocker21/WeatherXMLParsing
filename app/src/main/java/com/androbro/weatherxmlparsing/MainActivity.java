@@ -18,6 +18,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+
+
 public class MainActivity extends AppCompatActivity {
 
     private Menu mymenu;
@@ -37,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
         weatherTV = (TextView) findViewById(R.id.weather);
         temperatureTV = (TextView) findViewById(R.id.temperature_string);
         windTV = (TextView) findViewById(R.id.wind_string);
-
+        //updating our data with Progress Dialog
+        //it will be shown just once at the start of the app
         updateDataWithProgressDialog();
 
     }
@@ -54,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.refresh){
-
+            //setting up action bar menu item and animation for it
             LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             ImageView iv = (ImageView)inflater.inflate(R.layout.iv_refresh, null);
             Animation rotation = AnimationUtils.loadAnimation(this, R.anim.rotate_refresh);
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             iv.startAnimation(rotation);
             item.setActionView(iv);
 
+            //when pressed refresh button will sping for the duration of the background data updating process:
             updateDataWithAnimation();
 
             return true;
